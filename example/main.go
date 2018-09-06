@@ -25,29 +25,9 @@ func main() {
 	)
 	t := tdex.NewTdex(tdexService)
 
-	// pc, err := t.FuturesCloseAll([]tdex.FuturesCloseAllRequest{111, 222})
-	// if err != nil {
-	// 	panic(err)
-	// }
-	// fmt.Printf("%+v", pc)
-
-	// dc, err := t.FuturesClose([]tdex.FuturesCloseRequest{
-	// 	{}, {}, {},
-	// })
-	// if err != nil {
-	// 	panic(err)
-	// }
-	// fmt.Printf("%+v", dc)
-
-	cc, err := t.Balances(tdex.BalancesRequest{Type: 1})
+	pc, err := t.FuturesCloseAll([]tdex.FuturesCloseAllRequest{})
 	if err != nil {
 		panic(err)
 	}
-	fmt.Printf("%+v", cc)
-
-	// ac, err := t.UserInfo()
-	// if err != nil {
-	// 	panic(err)
-	// }
-	// fmt.Printf("%+v", ac)
+	fmt.Println("%+v", pc)
 }

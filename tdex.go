@@ -684,7 +684,10 @@ type FuturesCloseRequest struct {
 }
 type FuturesCloseAllRequest uint64
 
-type FururesCancelRequest interface{}
+type FururesCancelRequest struct {
+	Cid int64
+	Id  uint64
+}
 
 type FururesReplaceRequest struct {
 	ID          uint64
