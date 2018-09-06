@@ -656,11 +656,18 @@ type FuturesOpenRequest struct {
 	Better      bool
 	Variable    uint32
 	Constant    float64
+	Sl          FuturesOpenRequestSl
+	Tp          FuturesOpenRequestSTp
+}
+type FuturesOpenRequestSl struct {
+	Distance bool
+	Param    float64
+}
+type FuturesOpenRequestSTp struct {
+	Distance bool
+	Param    float64
 }
 
-// type FuturesCloseRequest struct {
-// 	List []*FuturesCloseRequestList
-// }
 type FuturesCloseRequest struct {
 	Cid         int64
 	ID          uint64
