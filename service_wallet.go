@@ -26,31 +26,14 @@ func (as *apiService) Balances(bq BalancesRequest) (*Balances, error) {
 		return nil, as.handleError(textRes)
 	}
 
-	// rawBalances := struct {
-	// 	Status uint32 `json:"status"`
-	// 	Data   struct {
-	// 		List []struct {
-	// 			Type      uint32  `json:"type"`
-	// 			Currency  uint32  `json:"currency"`
-	// 			Quantity  float64 `json:"quantity"`
-	// 			Withdraw  float64 `json:"withdraw"`
-	// 			Transfer  float64 `json:"transfer"`
-	// 			Deposit   float64 `json:"deposit"`
-	// 			Lock      uint32  `json:"lock"`
-	// 			Available uint32  `json:"available"`
-	// 			Status    uint32  `json:"status"`
-	// 		}
-	// 	}
-	// }{}
+	
 	rawBalances := Balances{}
 
 	if err := json.Unmarshal(textRes, &rawBalances); err != nil {
 		return nil, errors.Wrap(err, "rawBalances unmarshal failed")
 	}
 
-	// bls := &Balances{
-	// 	// Status: rawProductCoins.Status,
-	// }
+	
 
 	return &rawBalances, nil
 }
@@ -74,29 +57,14 @@ func (as *apiService) Balance(bq BalanceRequest) (*Balance, error) {
 		return nil, as.handleError(textRes)
 	}
 
-	// rawBalance := struct {
-	// 	Status uint32 `json:"status"`
-	// 	Data   struct {
-	// 		Type      uint32  `json:"type"`
-	// 		Currency  uint32  `json:"currency"`
-	// 		Quantity  float64 `json:"quantity"`
-	// 		Withdraw  float64 `json:"withdraw"`
-	// 		Transfer  float64 `json:"transfer"`
-	// 		Deposit   float64 `json:"deposit"`
-	// 		Lock      uint32  `json:"lock"`
-	// 		Available uint32  `json:"available"`
-	// 		Status    uint32  `json:"status"`
-	// 	}
-	// }{}
+	
 	rawBalance := Balance{}
 
 	if err := json.Unmarshal(textRes, &rawBalance); err != nil {
 		return nil, errors.Wrap(err, "rawBalance unmarshal failed")
 	}
 
-	// bl := &Balance{
-	// 	// Status: rawProductCoins.Status,
-	// }
+	
 
 	return &rawBalance, nil
 }
@@ -122,26 +90,14 @@ func (as *apiService) Withdraw(wq WithdrawRequest) (*Withdraw, error) {
 		return nil, as.handleError(textRes)
 	}
 
-	// rawWithdraw := struct {
-	// 	Status uint32 `json:"status"`
-	// 	Data   struct {
-	// 		Currency uint32  `json:"currency"`
-	// 		Quantity float64 `json:"quantity"`
-	// 		Withdraw float64 `json:"withdraw"`
-	// 		Transfer float64 `json:"transfer"`
-	// 		Deposit  float64 `json:"deposit"`
-	// 		OrderID  string  `json:"orderId"`
-	// 	}
-	// }{}
+	
 	rawWithdraw := Withdraw{}
 
 	if err := json.Unmarshal(textRes, &rawWithdraw); err != nil {
 		return nil, errors.Wrap(err, "rawWithdraw unmarshal failed")
 	}
 
-	// wd := &Withdraw{
-	// 	// Status: rawProductCoins.Status,
-	// }
+	
 
 	return &rawWithdraw, nil
 }

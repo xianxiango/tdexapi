@@ -102,7 +102,7 @@ func (as *apiService) FuturesCloseAll(wq []FuturesCloseAllRequest) (*FuturesClos
 
 	return &rawFuturesCloseAll, nil
 }
-func (as *apiService) FururesCancel(wq []FururesCancelRequest) (*FururesCancel, error) {
+func (as *apiService) FuturesCancel(wq []FuturesCancelRequest) (*FuturesCancel, error) {
 	params := make(map[string]interface{})
 	params["list"] = wq
 
@@ -112,7 +112,7 @@ func (as *apiService) FururesCancel(wq []FururesCancelRequest) (*FururesCancel, 
 	}
 	textRes, err := ioutil.ReadAll(res.Body)
 	if err != nil {
-		return nil, errors.Wrap(err, "unable to read response from FururesCancel.post")
+		return nil, errors.Wrap(err, "unable to read response from FuturesCancel.post")
 	}
 	defer res.Body.Close()
 
@@ -121,15 +121,15 @@ func (as *apiService) FururesCancel(wq []FururesCancelRequest) (*FururesCancel, 
 		return nil, as.handleError(textRes)
 	}
 
-	rawFururesCancel := FururesCancel{}
+	rawFuturesCancel := FuturesCancel{}
 
-	if err := json.Unmarshal(textRes, &rawFururesCancel); err != nil {
-		return nil, errors.Wrap(err, "rawFururesCancel unmarshal failed")
+	if err := json.Unmarshal(textRes, &rawFuturesCancel); err != nil {
+		return nil, errors.Wrap(err, "rawFuturesCancel unmarshal failed")
 	}
 
-	return &rawFururesCancel, nil
+	return &rawFuturesCancel, nil
 }
-func (as *apiService) FururesReplace(wq FururesReplaceRequest) (*FururesReplace, error) {
+func (as *apiService) FuturesReplace(wq FuturesReplaceRequest) (*FuturesReplace, error) {
 	params := make(map[string]interface{})
 	params["id"] = wq.ID
 	params["relative"] = wq.Relative
@@ -153,7 +153,7 @@ func (as *apiService) FururesReplace(wq FururesReplaceRequest) (*FururesReplace,
 	}
 	textRes, err := ioutil.ReadAll(res.Body)
 	if err != nil {
-		return nil, errors.Wrap(err, "unable to read response from FururesReplace.post")
+		return nil, errors.Wrap(err, "unable to read response from FuturesReplace.post")
 	}
 	defer res.Body.Close()
 
@@ -162,13 +162,13 @@ func (as *apiService) FururesReplace(wq FururesReplaceRequest) (*FururesReplace,
 		return nil, as.handleError(textRes)
 	}
 
-	rawFururesReplace := FururesReplace{}
+	rawFuturesReplace := FuturesReplace{}
 
-	if err := json.Unmarshal(textRes, &rawFururesReplace); err != nil {
-		return nil, errors.Wrap(err, "rawFururesReplace unmarshal failed")
+	if err := json.Unmarshal(textRes, &rawFuturesReplace); err != nil {
+		return nil, errors.Wrap(err, "rawFuturesReplace unmarshal failed")
 	}
 
-	return &rawFururesReplace, nil
+	return &rawFuturesReplace, nil
 }
 
 func (as *apiService) Setsl(wq SetslRequest) (*Setsl, error) {

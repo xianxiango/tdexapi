@@ -22,7 +22,5 @@ func (hs *HmacSigner) Sign(payload []byte, data []byte) string {
 	mac := hmac.New(sha256.New, hs.Key)
 	mac.Write(payload)
 	mac.Write(data)
-	// fmt.Println(string(payload))
-	// fmt.Println(string(data))
 	return hex.EncodeToString(mac.Sum(nil))
 }

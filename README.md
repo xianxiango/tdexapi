@@ -9,7 +9,7 @@ logger = level.NewFilter(logger, level.AllowAll())
 logger = log.With(logger, "time", log.DefaultTimestampUTC, "caller", log.DefaultCaller)
 ctx, _ := context.WithCancel(context.Background())
 tdexService := tdex.NewAPIService(
-    "https://tl.tdex.com",
+    "URL",
     "api-key",
     "api-secret",
     logger,
@@ -34,7 +34,7 @@ fmt.Printf("%+v", td)
 
 ```go
 td, err := t.Balances(tdex.BalancesRequest{
-    Type: 1
+    Type: 1,
 })
 if err != nil {
     panic(err)
@@ -108,7 +108,7 @@ params:
 
 ```go
 td, err := t.FuturesOpen(tdex.FuturesOpenRequest{
-    Currency:1, Address: 'string', Amount: float64
+    Cid:int64, Side: uint32, Scale: float64
 })
 if err != nil {
     panic(err)
@@ -204,7 +204,7 @@ params:
 
 ```go
 td, err := t.FuturesCloseAll([]tdex.FuturesCloseAllRequest{
-    1,2,3
+    1,2,3,
 })
 if err != nil {
     panic(err)
@@ -219,8 +219,8 @@ params:
 #### 批量取消
 
 ```go
-td, err := t.FururesCancel([]tdex.FururesCancelRequest{
-    {Cid:1,id:1},{Cid:1,id:1},
+td, err := t.FuturesCancel([]tdex.FuturesCancelRequest{
+    {Cid:1,ID:1},{Cid:1,ID:1},
 })
 if err != nil {
     panic(err)
@@ -237,7 +237,7 @@ params:
 #### 设置止损
 
 ```go
-td, err := t.Setsl(tdex.SetslRequest{cid: int64, id: uint64,...})
+td, err := t.Setsl(tdex.SetslRequest{Cid: int64, ID: uint64,...})
 if err != nil {
     panic(err)
 }
@@ -274,7 +274,7 @@ parmas:
 #### 设置止盈
 
 ```go
-td, err := t.Settp(tdex.SettpRequest{cid: int64, id: uint64,...})
+td, err := t.Settp(tdex.SettpRequest{Cid: int64, ID: uint64,...})
 if err != nil {
     panic(err)
 }
@@ -311,7 +311,7 @@ parmas:
 #### 合仓
 
 ```go
-td, err := t.Merge(tdex.MergeRequest{cid: int64, list: []})
+td, err := t.Merge(tdex.MergeRequest{Cid: int64, List: []uint64{}})
 if err != nil {
     panic(err)
 }
@@ -328,7 +328,7 @@ params:
 #### 分仓
 
 ```go
-td, err := t.Split(tdex.SplitRequest{cid: int64, id: uint64, volume: uint64})
+td, err := t.Split(tdex.SplitRequest{Cid: int64, ID: uint64, Volume: uint64})
 if err != nil {
     panic(err)
 }
@@ -347,7 +347,7 @@ params:
 #### 获取 用户选项
 
 ```go
-td, err := t.SchemeGet(tdex.SchemeGetRequest{cid: int64})
+td, err := t.SchemeGet(tdex.SchemeGetRequest{Cid: int64})
 if err != nil {
     panic(err)
 }
@@ -361,7 +361,7 @@ params:
 #### 设置 用户选项
 
 ```go
-td, err := t.SchemeSet(tdex.SchemeSetRequest{cid: int64})
+td, err := t.SchemeSet(tdex.SchemeSetRequest{Cid: int64})
 if err != nil {
     panic(err)
 }
@@ -395,7 +395,7 @@ fmt.Printf("%+v", td)
 #### 获取历史信息
 
 ```go
-td, err := t.GetHistory(tdex.GetHistoryRequest{pageSize: int32, page: int32})
+td, err := t.GetHistory(tdex.GetHistoryRequest{PageSize: int32, Page: int32})
 if err != nil {
     panic(err)
 }
@@ -411,7 +411,7 @@ params:
 #### 获取合约信息
 
 ```go
-td, err := t.GetContract(tdex.GetContractRequest{symbol: string})
+td, err := t.GetContract(tdex.GetContractRequest{Symbol: string})
 if err != nil {
     panic(err)
 }
@@ -426,7 +426,7 @@ params:
 #### 现货买入
 
 ```go
-td, err := t.SpotBuy(tdex.SpotBuyRequest{amount: float64, price: float64, symbol: string})
+td, err := t.SpotBuy(tdex.SpotBuyRequest{Amount: float64, Price: float64, Symbol: string})
 if err != nil {
     panic(err)
 }
@@ -445,7 +445,7 @@ params:
 #### 现货卖出
 
 ```go
-td, err := t.SpotSell(tdex.SpotSellRequest{amount: float64, price: float64, symbol: string})
+td, err := t.SpotSell(tdex.SpotSellRequest{Amount: float64, Price: float64, Symbol: string})
 if err != nil {
     panic(err)
 }
@@ -464,7 +464,7 @@ params:
 #### 现货订单历史
 
 ```go
-td, err := t.SpotHistory(tdex.SpotHistoryRequest{beginTime: string, endTime: string, pageSize: int32, page: int32})
+td, err := t.SpotHistory(tdex.SpotHistoryRequest{BeginTime: string, EndTime: string, PageSize: int32, Page: int32})
 if err != nil {
     panic(err)
 }
@@ -482,22 +482,3 @@ params:
 	page 可选	int32	当前页码
 ```
 
-#### 现货买卖统计
-
-```go
-td, err := t.SpotStat(tdex.SpotStatRequest{beginTime: string, endTime: string, symbol: string})
-if err != nil {
-    panic(err)
-}
-fmt.Printf("%+v", td)
-```
-```
-params:
-
-	symbol	string	产品
-
-	beginTime	int64	开始时间戳。秒
-
-	endTime	int64	结束时间戳。秒
-	page 可选	int32	当前页码
-```

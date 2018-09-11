@@ -12,8 +12,8 @@ type Tdex interface {
 	FuturesOpen(fr FuturesOpenRequest) (*FuturesOpen, error)
 	FuturesClose(fcr []FuturesCloseRequest) (*FuturesClose, error)
 	FuturesCloseAll(fcar []FuturesCloseAllRequest) (*FuturesCloseAll, error)
-	FururesCancel(fcr []FururesCancelRequest) (*FururesCancel, error)
-	FururesReplace(frr FururesReplaceRequest) (*FururesReplace, error)
+	FuturesCancel(fcr []FuturesCancelRequest) (*FuturesCancel, error)
+	FuturesReplace(frr FuturesReplaceRequest) (*FuturesReplace, error)
 	Setsl(sr SetslRequest) (*Setsl, error)
 	Settp(sr SettpRequest) (*Settp, error)
 	Merge(mr MergeRequest) (*Merge, error)
@@ -234,28 +234,28 @@ func (t *tdex) FuturesCloseAll(wq []FuturesCloseAllRequest) (*FuturesCloseAll, e
 	return t.Service.FuturesCloseAll(wq)
 }
 
-type FururesCancel struct {
+type FuturesCancel struct {
 	Status uint32
-	Data   FururesCancelData
+	Data   FuturesCancelData
 	Errmsg string
 }
-type FururesCancelData struct {
+type FuturesCancelData struct {
 }
 
-func (t *tdex) FururesCancel(wq []FururesCancelRequest) (*FururesCancel, error) {
-	return t.Service.FururesCancel(wq)
+func (t *tdex) FuturesCancel(wq []FuturesCancelRequest) (*FuturesCancel, error) {
+	return t.Service.FuturesCancel(wq)
 }
 
-type FururesReplace struct {
+type FuturesReplace struct {
 	Status uint32
-	Data   FururesReplaceData
+	Data   FuturesReplaceData
 	Errmsg string
 }
-type FururesReplaceData struct {
+type FuturesReplaceData struct {
 }
 
-func (t *tdex) FururesReplace(wq FururesReplaceRequest) (*FururesReplace, error) {
-	return t.Service.FururesReplace(wq)
+func (t *tdex) FuturesReplace(wq FuturesReplaceRequest) (*FuturesReplace, error) {
+	return t.Service.FuturesReplace(wq)
 }
 
 type Setsl struct {
@@ -684,12 +684,12 @@ type FuturesCloseRequest struct {
 }
 type FuturesCloseAllRequest uint64
 
-type FururesCancelRequest struct {
+type FuturesCancelRequest struct {
 	Cid int64
-	Id  uint64
+	ID  uint64
 }
 
-type FururesReplaceRequest struct {
+type FuturesReplaceRequest struct {
 	ID          uint64
 	Relative    bool
 	Cid         int64
