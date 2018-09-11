@@ -129,47 +129,6 @@ func (as *apiService) FuturesCancel(wq []FuturesCancelRequest) (*FuturesCancel, 
 
 	return &rawFuturesCancel, nil
 }
-func (as *apiService) FuturesReplace(wq FuturesReplaceRequest) (*FuturesReplace, error) {
-	params := make(map[string]interface{})
-	params["id"] = wq.ID
-	params["relative"] = wq.Relative
-	params["cid"] = wq.Cid
-	params["side"] = wq.Side
-	params["scale"] = wq.Scale
-	params["volume"] = wq.Volume
-	params["distance"] = wq.Distance
-	params["price"] = wq.Price
-	params["timely"] = wq.Timely
-	params["timelyParam"] = wq.TimelyParam
-	params["passive"] = wq.Passive
-	params["visible"] = wq.Visible
-	params["strategy"] = wq.Strategy
-	params["better"] = wq.Better
-	params["constant"] = wq.Constant
-
-	res, err := as.request("POST", "/futures/replace", params, true, false)
-	if err != nil {
-		return nil, err
-	}
-	textRes, err := ioutil.ReadAll(res.Body)
-	if err != nil {
-		return nil, errors.Wrap(err, "unable to read response from FuturesReplace.post")
-	}
-	defer res.Body.Close()
-
-	log.Println(string(textRes))
-	if res.StatusCode != 200 {
-		return nil, as.handleError(textRes)
-	}
-
-	rawFuturesReplace := FuturesReplace{}
-
-	if err := json.Unmarshal(textRes, &rawFuturesReplace); err != nil {
-		return nil, errors.Wrap(err, "rawFuturesReplace unmarshal failed")
-	}
-
-	return &rawFuturesReplace, nil
-}
 
 func (as *apiService) Setsl(wq SetslRequest) (*Setsl, error) {
 	params := make(map[string]interface{})

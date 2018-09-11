@@ -24,7 +24,6 @@ type Service interface {
 	FuturesClose(fcr []FuturesCloseRequest) (*FuturesClose, error)
 	FuturesCloseAll(fcar []FuturesCloseAllRequest) (*FuturesCloseAll, error)
 	FuturesCancel(fcr []FuturesCancelRequest) (*FuturesCancel, error)
-	FuturesReplace(frr FuturesReplaceRequest) (*FuturesReplace, error)
 	Setsl(sr SetslRequest) (*Setsl, error)
 	Settp(sr SettpRequest) (*Settp, error)
 	Merge(mr MergeRequest) (*Merge, error)
@@ -42,7 +41,6 @@ type Service interface {
 	SpotOrders() (*SpotOrders, error)
 	SpotHistory(shr SpotHistoryRequest) (*SpotHistory, error)
 	SpotStat(ssr SpotStatRequest) (*SpotStat, error)
-	RobotClose(ssr RobotCloseRequest) (*RobotClose, error)
 }
 type apiService struct {
 	URL    string

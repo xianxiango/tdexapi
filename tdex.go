@@ -13,7 +13,6 @@ type Tdex interface {
 	FuturesClose(fcr []FuturesCloseRequest) (*FuturesClose, error)
 	FuturesCloseAll(fcar []FuturesCloseAllRequest) (*FuturesCloseAll, error)
 	FuturesCancel(fcr []FuturesCancelRequest) (*FuturesCancel, error)
-	FuturesReplace(frr FuturesReplaceRequest) (*FuturesReplace, error)
 	Setsl(sr SetslRequest) (*Setsl, error)
 	Settp(sr SettpRequest) (*Settp, error)
 	Merge(mr MergeRequest) (*Merge, error)
@@ -31,7 +30,6 @@ type Tdex interface {
 	SpotOrders() (*SpotOrders, error)
 	SpotHistory(shr SpotHistoryRequest) (*SpotHistory, error)
 	SpotStat(ssr SpotStatRequest) (*SpotStat, error)
-	RobotClose(ssr RobotCloseRequest) (*RobotClose, error)
 }
 type tdex struct {
 	Service Service
@@ -244,18 +242,6 @@ type FuturesCancelData struct {
 
 func (t *tdex) FuturesCancel(wq []FuturesCancelRequest) (*FuturesCancel, error) {
 	return t.Service.FuturesCancel(wq)
-}
-
-type FuturesReplace struct {
-	Status uint32
-	Data   FuturesReplaceData
-	Errmsg string
-}
-type FuturesReplaceData struct {
-}
-
-func (t *tdex) FuturesReplace(wq FuturesReplaceRequest) (*FuturesReplace, error) {
-	return t.Service.FuturesReplace(wq)
 }
 
 type Setsl struct {
@@ -610,18 +596,6 @@ func (t *tdex) SpotStat(sq SpotStatRequest) (*SpotStat, error) {
 	return t.Service.SpotStat(sq)
 }
 
-type RobotClose struct {
-	Status uint64
-	Data   RobotCloseData
-	Errmsg string
-}
-type RobotCloseData struct {
-}
-
-func (t *tdex) RobotClose(sq RobotCloseRequest) (*RobotClose, error) {
-	return t.Service.RobotClose(sq)
-}
-
 type BalancesRequest struct {
 	Type uint32
 }
@@ -687,25 +661,6 @@ type FuturesCloseAllRequest uint64
 type FuturesCancelRequest struct {
 	Cid int64
 	ID  uint64
-}
-
-type FuturesReplaceRequest struct {
-	ID          uint64
-	Relative    bool
-	Cid         int64
-	Side        uint32
-	Scale       float64
-	Volume      uint32
-	Distance    bool
-	Price       float64
-	Timely      uint32
-	TimelyParam int32
-	Passive     bool
-	Visible     int32
-	Strategy    uint32
-	Better      bool
-	Variable    uint32
-	Constant    float64
 }
 type SetslRequest struct {
 	Cid         int64
@@ -791,7 +746,4 @@ type SpotStatRequest struct {
 	Symbol    string
 	BeginTime int64
 	EndTime   int64
-}
-type RobotCloseRequest struct {
-	Type string
 }
