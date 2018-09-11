@@ -43,7 +43,7 @@ fmt.Printf("%+v", td)
 ```
 ```
 params:
-    type uint32
+    Type uint32
 ```
 
 #### 查询单个余额
@@ -60,8 +60,8 @@ fmt.Printf("%+v", td)
 ```
 ```
 params:
-    currency uint32
-    type uint32
+    Currency uint32
+    Type uint32
 ```
 
 #### 提现
@@ -79,9 +79,9 @@ fmt.Printf("%+v", td)
 ```
 ```
 params:
-	currency uint32	 源币种。比如 1 - BTC
-	address	string	提现地址
-	amount	float64 数量
+	Currency uint32	 源币种。比如 1 - BTC
+	Address	string	提现地址
+	Amount	float64 数量
 ```
 
 #### 资金划转
@@ -99,9 +99,9 @@ fmt.Printf("%+v", td)
 ```
 ```
 params:
-    currency uint32
-    direction uint32
-    amount float64
+    Currency uint32
+    Direction uint32
+    Amount float64
 ```
 
 #### 开仓
@@ -117,45 +117,45 @@ fmt.Printf("%+v", td)
 ```
 ```
 params:
-    cid	int64 产品
+    Cid			int64 产品
 
-side	uint32	交易方向。0 - buy 1 - sell。参考
+	Side		uint32	交易方向。0 - buy 1 - sell。参考
 
-scale	float64 杠杆
+	Scale		float64 杠杆
 
-volume	uint32	数量
+	Volume		uint32	数量
 
-distance	bool 触发时使用价距或价格
+	Distance	bool 触发时使用价距或价格
 
-price	float64 限价 <=0:市价 singular
+	Price		float64 限价 <=0:市价 singular
 
-timely	uint32	时效性(限价单用) singular。参考
+	Timely		uint32	时效性(限价单用) singular。参考
 
-timelyParam	int32	时效性参数
+	TimelyParam	int32	时效性参数
 
-passive	bool 被动性
+	Passive		bool 被动性
 
-visible	int32 显示数量 <0:全部可见 >=0隐藏
+	Visible		int32 显示数量 <0:全部可见 >=0隐藏
 
-strategy	uint32	策略。参考
+	Strategy	uint32	策略。参考
 
-better	bool 以买一卖一价进入订单簿
+	Better		bool 以买一卖一价进入订单簿
 
-variable	uint32	策略使用的变量(条件订单用) singular。参考
+	Variable	uint32	策略使用的变量(条件订单用) singular。参考
 
-constant	float64 策略中常量(条件订单用) singular
+	Constant	float64 策略中常量(条件订单用) singular
 
-sl	Object	止损 singular
+	Sl			Object	止损 singular
 
-	-distance	bool 价距|报价 市价单只用用价距
+		-Distance	bool 价距|报价 市价单只用用价距
 
-	-param float64 值
+		-Param float64 值
 
-tp	Object	止盈 singular
+	Tp	Object	止盈 singular
 
-	-distance bool 价距|报价 市价单只用用价距
+		-Distance bool 价距|报价 市价单只用用价距
 
-	-param	float64 值
+		-Param	float64 值
 ```
 
 
@@ -173,31 +173,31 @@ fmt.Printf("%+v", td)
 ```
 params:
      
-     list Object[]	持仓列表
+     List Object[]	持仓列表
 
-		  -cid	int64	产品
+		  -Cid			int64	产品
 		
-		  -id	uint64	仓位
+		  -ID			uint64	仓位
 		
-		  -distance	bool	是否为相对价格
+		  -Distance		bool	是否为相对价格
 		
-		  -price	float64	限价 <=0: 市价
+		  -Price		float64	限价 <=0: 市价
 		
-		  -timely	uint32	时效性(限价单用) singular。参考
+		  -Timely		uint32	时效性(限价单用) singular。参考
 		
-		  -timelyParam	int32	时效性参数
+		  -TimelyParam	int32	时效性参数
 		
-		  -strategy	uint32	策略。参考
+		  -Strategy		uint32	策略。参考
 		
-		  -variable	uint32	策略使用的变量(条件订单用) singular。参考
+		  -Variable		uint32	策略使用的变量(条件订单用) singular。参考
 		
-		  -constant	float64	策略中常量(条件订单用) singular
+		  -Constant		float64	策略中常量(条件订单用) singular
 		
-		  -passive	bool	被动性
+		  -Passive		bool	被动性
 		
-		  -visible	int32	显示数量 <0:全部可见 >=0隐藏
+		  -Visible		int32	显示数量 <0:全部可见 >=0隐藏
 		
-		  -better bool	 以买一卖一价进入订单簿
+		  -Better 		bool	 以买一卖一价进入订单簿
 ```
 
 #### 全部平仓
@@ -213,7 +213,7 @@ fmt.Printf("%+v", td)
 ```
 ```
 params:
-	list	uint64[]	产品列表 [CID,...]
+	List	uint64[]	产品列表 [CID,...]
 ```
 
 #### 批量取消
@@ -229,9 +229,9 @@ fmt.Printf("%+v", td)
 ```
 ```
 params:
-	list	Object[]		委托列表
-        cid     int64       产品
-        id      uint64      仓位
+	List	Object[]		委托列表
+        Cid     int64       产品
+        ID      uint64      仓位
 ```
 
 #### 设置止损
@@ -246,29 +246,29 @@ fmt.Printf("%+v", td)
 ```
 parmas:
 
-	cid	int64	产品
+	Cid			int64	产品
 
-	id	uint64	仓位
+	ID			uint64	仓位
 	
-	distance	bool	是否为相对价格
+	Distance	bool	是否为相对价格
 	
-	price	float64	限价 <=0: 市价
+	Price		float64	限价 <=0: 市价
 	
-	timely	uint32	时效性(限价单用) singular。参考
+	Timely		uint32	时效性(限价单用) singular。参考
 	
-	timelyParam	int32	时效性参数
+	TimelyParam	int32	时效性参数
 	
-	strategy	uint32	策略。参考
+	Strategy	uint32	策略。参考
 	
-	variable	uint32	策略使用的变量(条件订单用) singular。参考
+	Variable	uint32	策略使用的变量(条件订单用) singular。参考
 	
-	constant	float64 策略中常量(条件订单用) singular
+	Constant	float64 策略中常量(条件订单用) singular
 	
-	passive	bool	被动性
+	Passive		bool	被动性
 	
-	visible	int32	显示数量 <0:全部可见 >=0隐藏
+	Visible		int32	显示数量 <0:全部可见 >=0隐藏
 	
-	better	bool	以买一卖一价进入订单簿
+	Better		bool	以买一卖一价进入订单簿
 ```
 
 #### 设置止盈
@@ -283,29 +283,29 @@ fmt.Printf("%+v", td)
 ```
 parmas:
 
-	cid	int64	产品
+	Cid	 		int64	产品
 
-	id	uint64	仓位
+	ID			uint64	仓位
 	
-	distance	bool	是否为相对价格
+	Distance	bool	是否为相对价格
 	
-	price	float64	限价 <=0: 市价
+	Price		float64	限价 <=0: 市价
 	
-	timely	uint32	时效性(限价单用) singular。参考
+	Timely		uint32	时效性(限价单用) singular。参考
 	
-	timelyParam	int32	时效性参数
+	TimelyParam	int32	时效性参数
 	
-	strategy	uint32	策略。参考
+	Strategy	uint32	策略。参考
 	
-	variable	uint32	策略使用的变量(条件订单用) singular。参考
+	Variable	uint32	策略使用的变量(条件订单用) singular。参考
 	
-	constant	float64 策略中常量(条件订单用) singular
+	Constant	float64 策略中常量(条件订单用) singular
 	
-	passive	bool	被动性
+	Passive		bool	被动性
 	
-	visible	int32	显示数量 <0:全部可见 >=0隐藏
+	Visible		int32	显示数量 <0:全部可见 >=0隐藏
 	
-	better	bool	以买一卖一价进入订单簿
+	Better		bool	以买一卖一价进入订单簿
 ```
 
 #### 合仓
@@ -320,9 +320,9 @@ fmt.Printf("%+v", td)
 ```
 params:
 
-	cid	int64	产品
+	Cid		int64	产品
 
-	list	uint64[]	要合仓的仓位列表
+	List	uint64[]	要合仓的仓位列表
 ```
 
 #### 分仓
@@ -337,11 +337,11 @@ fmt.Printf("%+v", td)
 ```
 params:
 
-	cid	int64	产品
+	Cid		int64	产品
 
-	id	uint64	仓位
+	ID		uint64	仓位
 
-	volume	uint64	数量
+	Volume	uint64	数量
 ```
 
 #### 获取 用户选项
@@ -356,7 +356,7 @@ fmt.Printf("%+v", td)
 ```
 params:
 
-	cid	uint32	产品
+	Cid	uint32	产品
 ```
 #### 设置 用户选项
 
@@ -370,7 +370,7 @@ fmt.Printf("%+v", td)
 ```
 params:
 
-	cid	uint32	产品
+	Cid	uint32	产品
 ```
 
 #### 获取订单
@@ -404,8 +404,8 @@ fmt.Printf("%+v", td)
 ```
 params:
 
-	pageSize 可选	int32	页大小
-	page 可选	int32	当前页码
+	PageSize 可选	int32	页大小
+	Page 可选		int32	当前页码
 ```
 
 #### 获取合约信息
@@ -420,7 +420,7 @@ fmt.Printf("%+v", td)
 ```
 params:
 
-	symbol	string	产品符号。目前只有 BTCUSD
+	Symbol	string	产品符号。目前只有 BTCUSD
 ```
 
 #### 现货买入
@@ -435,11 +435,11 @@ fmt.Printf("%+v", td)
 ```
 params:
 
-	amount	float64	数量
+	Amount		float64	数量
 
-	price 可选	float64	价格。如果市价为 0，限价不为 0
+	Price 可选	float64	价格。如果市价为 0，限价不为 0
 	
-	symbol	string	交易对。如 TDUSDT
+	Symbol		string	交易对。如 TDUSDT
 ```
 
 #### 现货卖出
@@ -454,11 +454,11 @@ fmt.Printf("%+v", td)
 ```
 params:
 
-	amount	float64	数量
+	Amount	float64	数量
 
-	price 可选	float64	价格。如果市价为 0，限价不为 0
+	Price 可选	float64	价格。如果市价为 0，限价不为 0
 	
-	symbol	string	交易对。如 TDUSDT
+	Symbol	string	交易对。如 TDUSDT
 ```
 
 #### 现货订单历史
@@ -473,12 +473,12 @@ fmt.Printf("%+v", td)
 ```
 params:
 
-	beginTime	string	开始时间。2017-01-01
+	BeginTime	string	开始时间。2017-01-01
 
-	endTime	string	结束时间。2017-09-13
+	EndTime	string	结束时间。2017-09-13
 	
-	pageSize 可选	int32	页大小
+	PageSize 可选	int32	页大小
 	
-	page 可选	int32	当前页码
+	Page 可选	int32	当前页码
 ```
 
