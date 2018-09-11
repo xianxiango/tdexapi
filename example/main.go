@@ -4,10 +4,10 @@ import (
 	"context"
 	"fmt"
 	"os"
-	"tdexapi"
 
 	"github.com/go-kit/kit/log"
 	"github.com/go-kit/kit/log/level"
+	tdex "github.com/tdex-exchange/golang-tdex-api"
 )
 
 func main() {
@@ -25,9 +25,11 @@ func main() {
 	)
 	t := tdex.NewTdex(tdexService)
 
-	pc, err := t.FuturesCloseAll([]tdex.FuturesCloseAllRequest{})
+	td, err := t.FuturesCancel([]tdex.FuturesCancelRequest{
+		{Cid: 1, ID: 1}, {Cid: 1, ID: 1},
+	})
 	if err != nil {
 		panic(err)
 	}
-	fmt.Println("%+v", pc)
+	fmt.Printf("%+v", td)
 }
